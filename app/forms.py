@@ -1,9 +1,8 @@
 from flask_wtf import FlaskForm
-from wtforms import TextAreaField,SubmitField
-from flask_wtf.file import FileField,FileAllowed,FileRequired
-from wtforms.validators import InputRequired, DataRequired
+from wtforms import StringField, SelectField, TextAreaField
+from wtforms.validators import InputRequired, Email
+from flask_wtf.file import FileField, FileAllowed, FileRequired
 
-
-class UploadForm (FlaskForm):
-    description = TextAreaField('Description', validators = [DataRequired("Description is required")])
-    photo = FileField('images', validators=[FileRequired("Please input file"),FileAllowed(['jpg','png','jpeg'], 'Only jpg,jpeg and png images can be uploaded!')])
+class UploadForm(FlaskForm):
+    description = TextAreaField('Description', validators=[InputRequired(message='Description is required')])
+    upload = FileField('Image', validators=[FileRequired('Please input a file'), FileAllowed(['jpg', 'png'], 'Images only!')])
